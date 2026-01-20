@@ -236,12 +236,14 @@
       width:100%;
     }
 
+    /* Foto şeridi (senin mevcut) */
     .strip{
       margin: 14px 0 18px;
       border-top: 6px solid #111;
       border-bottom: 6px solid #111;
       padding: 10px;
       background: #111;
+      border-radius: 12px;
     }
     .photos{
       display:grid;
@@ -254,6 +256,78 @@
       object-fit: cover;
       border-radius: 6px;
       background:#ddd;
+    }
+
+    /* ✅ Aileler bölümü (Yeni) */
+    .families{
+      margin: 8px auto 14px;
+      max-width: 420px;
+      background: rgba(255,255,255,.70);
+      border: 1px solid rgba(0,0,0,.12);
+      border-radius: 14px;
+      padding: 12px;
+      backdrop-filter: blur(6px);
+    }
+    .familiesTitle{
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 10px;
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      text-align:center;
+    }
+    .famGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .famCard{
+      background:#fff;
+      border: 1px solid rgba(0,0,0,.10);
+      border-radius: 12px;
+      padding: 10px 10px 12px;
+      text-align:center;
+    }
+    .famRole{
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      font-size: 11px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .famName{
+      font-family: "Brush Script MT","Segoe Script",cursive;
+      font-size: 28px;
+      line-height: 1.05;
+      margin: 0;
+    }
+    .famNote{
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      font-size: 12px;
+      color: var(--muted);
+      margin: 6px 0 0;
+    }
+    .waBtn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,.15);
+      background:#fff;
+      color:#111;
+      text-decoration:none;
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      font-size: 13px;
+    }
+    .waDot{
+      width:10px; height:10px; border-radius:99px;
+      background:#25D366; /* WhatsApp yeşili */
+      box-shadow: 0 0 0 4px rgba(37,211,102,.18);
     }
 
     .sectionTitle{
@@ -294,6 +368,7 @@
       .details{ font-size: 23px; }
       .photos img{ height: 72px; }
       .overlayTitle{ font-size: 38px; }
+      .famName{ font-size: 26px; }
     }
   </style>
 </head>
@@ -333,15 +408,36 @@
 
         <div class="names">Abdulkadir Üçme<br/>ve Eda Nur Arı</div>
 
-        <div class="countdown" aria-live="polite">
-          <div class="cdTitle">Düğüne Kalan Süre</div>
-          <div class="cdGrid">
-            <div class="cdBox"><div class="cdNum" id="d">--</div><div class="cdLbl">Gün</div></div>
-            <div class="cdBox"><div class="cdNum" id="h">--</div><div class="cdLbl">Saat</div></div>
-            <div class="cdBox"><div class="cdNum" id="m">--</div><div class="cdLbl">Dakika</div></div>
-            <div class="cdBox"><div class="cdNum" id="s">--</div><div class="cdLbl">Saniye</div></div>
+
+        <!-- ✅ AİLELER (Yeni bölüm) -->
+
+          <div class="famGrid">
+            <!-- Damat tarafı -->
+            <div class="famCard">
+              <div class="famRole">Damat Tarafı</div>
+              <p class="famName">Mehmet & Şefika Üçme</p>
+              <p class="famNote">İletişim için aşağıdan yazabilirsiniz</p>
+
+              <!-- İstersen WhatsApp aç: numarayı yaz -->
+              <!-- Örn: 9053xxxxxxxx -->
+              <a class="waBtn" target="_blank"
+                 href="https://wa.me/9053XXXXXXXX?text=Merhaba%2C%20d%C3%BC%C4%9F%C3%BCn%20ile%20ilgili%20bilgi%20alabilir%20miyim%3F">
+                <span class="waDot"></span> WhatsApp
+              </a>
+            </div>
+
+            <!-- Gelin tarafı -->
+            <div class="famCard">
+              <div class="famRole">Gelin Tarafı</div>
+              <p class="famName">Şerif & Dönüş Arı</p>
+              <p class="famNote">İletişim için aşağıdan yazabilirsiniz</p>
+
+              <a class="waBtn" target="_blank"
+                 href="https://wa.me/9054YYYYYYYY?text=Merhaba%2C%20d%C3%BC%C4%9F%C3%BCn%20ile%20ilgili%20bilgi%20alabilir%20miyim%3F">
+                <span class="waDot"></span> WhatsApp
+              </a>
+            </div>
           </div>
-        </div>
 
         <!-- Müzik -->
         <div class="audioBox">
@@ -358,6 +454,8 @@
           </audio>
         </div>
 
+
+        <!-- Foto şeridi -->
         <div class="strip">
           <div class="photos">
             <img src="p1.jpeg" alt="Foto 1">
@@ -374,7 +472,15 @@
           Saat: 19.00<br/>
           Tac Mahal Düğün Salonu
         </p>
-
+        <div class="countdown" aria-live="polite">
+          <div class="cdTitle">Düğüne Kalan Süre</div>
+          <div class="cdGrid">
+            <div class="cdBox"><div class="cdNum" id="d">--</div><div class="cdLbl">Gün</div></div>
+            <div class="cdBox"><div class="cdNum" id="h">--</div><div class="cdLbl">Saat</div></div>
+            <div class="cdBox"><div class="cdNum" id="m">--</div><div class="cdLbl">Dakika</div></div>
+            <div class="cdBox"><div class="cdNum" id="s">--</div><div class="cdLbl">Saniye</div></div>
+          </div>
+        </div>
         <a class="mapBtn" target="_blank" href="https://maps.google.com/?q=">
           📍 Konuma Git
         </a>
@@ -467,18 +573,14 @@
 
     async function openInvite(){
       try{
-        // kullanıcı etkileşimi içinde olduğu için mobilde çalışır
         await startMusic();
-      }catch(e){
-        // müzik başlamasa bile davetiye açılsın
-      }
+      }catch(e){}
       overlay.classList.add("fadeOut");
       setTimeout(()=> overlay.remove(), 350);
     }
 
     openBtn.addEventListener("click", openInvite);
 
-    // Ek: kullanıcı kartın herhangi bir yerine dokunursa da açılsın
     overlay.addEventListener("click", (e)=>{
       if(e.target === overlay) openInvite();
     });
