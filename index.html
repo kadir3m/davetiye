@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Abdulkadir Üçme & Eda Nur Arı</title>
+
+  <style>
+    :root{
+      --paper:#f4f4f4;
+      --ink:#111;
+      --muted:#555;
+      --line:#cfcfcf;
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: ui-serif, Georgia, "Times New Roman", serif;
+      color:var(--ink);
+      background:
+        radial-gradient(900px 500px at 50% 0%, rgba(0,0,0,.10), transparent 60%),
+        linear-gradient(#fafafa,#f1f1f1);
+    }
+
+    /* ✅ Kapak ekranı (autoplay yerine) */
+    .overlay{
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      background:
+        radial-gradient(900px 500px at 50% 0%, rgba(255,255,255,.10), transparent 60%),
+        rgba(0,0,0,.92);
+      color: #fff;
+      text-align: center;
+    }
+    .overlayCard{
+      width: min(520px, 100%);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 18px;
+      padding: 22px 18px;
+      background: rgba(255,255,255,.06);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 20px 60px rgba(0,0,0,.45);
+    }
+    .overlayStar{ font-size: 34px; margin-bottom: 10px; }
+    .overlayTitle{
+      font-family: "Brush Script MT","Segoe Script","Snell Roundhand","Apple Chancery",cursive;
+      font-size: 44px;
+      line-height: 1.05;
+      margin: 0 0 10px;
+      font-weight: 500;
+    }
+    .overlaySub{
+      margin: 0 0 16px;
+      color: rgba(255,255,255,.78);
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .openBtn{
+      border: none;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 14px 18px;
+      width: 100%;
+      max-width: 320px;
+      background: #fff;
+      color: #111;
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      font-size: 15px;
+      font-weight: 650;
+      box-shadow: 0 12px 26px rgba(0,0,0,.35);
+    }
+    .openBtn:active{ transform: translateY(1px); }
+    .tiny{
+      margin-top: 12px;
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      font-size: 12px;
+      color: rgba(255,255,255,.65);
+    }
+    .fadeOut{
+      animation: fadeOut .35s ease forwards;
+    }
+    @keyframes fadeOut{
+      to{ opacity: 0; transform: scale(1.02); pointer-events:none; }
+    }
+
+    .page{
+      max-width: 520px;
+      margin: 18px auto 30px;
+      padding: 0 14px;
+    }
+
+    .film{
+      position: relative;
+      background: var(--paper);
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #e1e1e1;
+      box-shadow: 0 18px 45px rgba(0,0,0,.12);
+    }
+
+    .film::before,
+    .film::after{
+      content:"";
+      position:absolute;
+      top:0; bottom:0;
+      width: 34px;
+      background: #111;
+      opacity: .95;
+    }
+    .film::before{ left:0; }
+    .film::after{ right:0; }
+
+    .holes{
+      position:absolute;
+      top:14px; bottom:14px;
+      width: 34px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      padding: 10px 8px;
+      z-index: 2;
+      pointer-events:none;
+    }
+    .holes.left{ left:0; }
+    .holes.right{ right:0; }
+    .hole{
+      height: 16px;
+      border-radius: 3px;
+      background: #f3f3f3;
+      opacity: .95;
+    }
+
+    .content{
+      padding: 26px 18px 24px;
+      margin: 0 34px;
+      background:
+        radial-gradient(800px 300px at 50% 10%, rgba(0,0,0,.06), transparent 55%),
+        linear-gradient(#f6f6f6,#f1f1f1);
+      text-align:center;
+    }
+
+    .star{
+      font-size: 28px;
+      line-height: 1;
+      margin: 0 0 8px;
+    }
+
+    .tagline{
+      font-style: italic;
+      color: var(--muted);
+      margin: 0 0 10px;
+      font-size: 18px;
+    }
+
+    .names{
+      font-size: 52px;
+      margin: 6px 0 10px;
+      font-family: "Brush Script MT", "Segoe Script", "Snell Roundhand", "Apple Chancery", cursive;
+      font-weight: 500;
+    }
+
+    /* Geri sayım */
+    .countdown{
+      margin: 10px auto 12px;
+      max-width: 420px;
+      border: 1px solid rgba(0,0,0,.15);
+      background: rgba(255,255,255,.65);
+      border-radius: 14px;
+      padding: 10px 12px;
+      backdrop-filter: blur(6px);
+    }
+    .cdTitle{
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 8px;
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    }
+    .cdGrid{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    }
+    .cdBox{
+      background:#fff;
+      border:1px solid rgba(0,0,0,.10);
+      border-radius: 12px;
+      padding: 8px 6px;
+    }
+    .cdNum{ font-size: 18px; font-weight: 700; }
+    .cdLbl{ font-size: 11px; color: var(--muted); margin-top:2px; }
+
+    /* Müzik alanı */
+    .audioBox{
+      margin: 10px auto 18px;
+      max-width: 420px;
+      background: rgba(0,0,0,.10);
+      border-radius: 14px;
+      padding: 12px;
+      text-align:left;
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    }
+    .playerRow{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .playBtn{
+      border:none;
+      width:52px;
+      height:52px;
+      border-radius:999px;
+      background:#111;
+      color:#fff;
+      cursor:pointer;
+      display:grid;
+      place-items:center;
+      box-shadow: 0 10px 20px rgba(0,0,0,.25);
+      flex:0 0 auto;
+    }
+    .playBtn:active{ transform: translateY(1px); }
+    .trackInfo{ flex:1; }
+    .trackTitle{ font-weight: 700; font-size: 14px; margin:0; }
+    .trackHint{ color:var(--muted); font-size: 12px; margin:2px 0 0; }
+
+    .progress{
+      margin-top:10px;
+      width:100%;
+    }
+
+    .strip{
+      margin: 14px 0 18px;
+      border-top: 6px solid #111;
+      border-bottom: 6px solid #111;
+      padding: 10px;
+      background: #111;
+    }
+    .photos{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+    .photos img{
+      width:100%;
+      height: 86px;
+      object-fit: cover;
+      border-radius: 6px;
+      background:#ddd;
+    }
+
+    .sectionTitle{
+      font-size: 40px;
+      margin: 8px 0 4px;
+      font-weight: 600;
+    }
+    .underline{
+      width: 92px;
+      height: 2px;
+      background:#111;
+      margin: 0 auto 10px;
+      opacity: .85;
+    }
+    .details{
+      font-size: 26px;
+      line-height: 1.25;
+      margin: 0;
+    }
+
+    .mapBtn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      margin: 14px auto 0;
+      padding: 12px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,.2);
+      background:#fff;
+      color:#111;
+      text-decoration:none;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-size: 14px;
+    }
+
+    @media (max-width: 420px){
+      .names{ font-size: 46px; }
+      .details{ font-size: 23px; }
+      .photos img{ height: 72px; }
+      .overlayTitle{ font-size: 38px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✅ Kapak: tek dokunuşla müziği başlatır -->
+  <div class="overlay" id="overlay">
+    <div class="overlayCard">
+      <div class="overlayStar">✦</div>
+      <h1 class="overlayTitle">Abdulkadir Üçme<br/>ve Eda Nur Arı</h1>
+      <p class="overlaySub">
+        Davetiyeyi açmak için dokunun.<br/>
+        Müzik birlikte başlayacaktır.
+      </p>
+      <button class="openBtn" id="openBtn" type="button">🎵 Davetiyeyi Aç</button>
+      <div class="tiny">Not: Tarayıcı kuralları gereği müzik kullanıcı dokunuşu ile başlar.</div>
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="film">
+
+      <div class="holes left">
+        <div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div>
+        <div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div>
+        <div class="hole"></div><div class="hole"></div>
+      </div>
+      <div class="holes right">
+        <div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div>
+        <div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div>
+        <div class="hole"></div><div class="hole"></div>
+      </div>
+
+      <div class="content">
+        <div class="star">✦</div>
+        <p class="tagline">Sonsuzluğa Birlikte Adım</p>
+
+        <div class="names">Abdulkadir Üçme<br/>ve Eda Nur Arı</div>
+
+        <div class="countdown" aria-live="polite">
+          <div class="cdTitle">Düğüne Kalan Süre</div>
+          <div class="cdGrid">
+            <div class="cdBox"><div class="cdNum" id="d">--</div><div class="cdLbl">Gün</div></div>
+            <div class="cdBox"><div class="cdNum" id="h">--</div><div class="cdLbl">Saat</div></div>
+            <div class="cdBox"><div class="cdNum" id="m">--</div><div class="cdLbl">Dakika</div></div>
+            <div class="cdBox"><div class="cdNum" id="s">--</div><div class="cdLbl">Saniye</div></div>
+          </div>
+        </div>
+
+        <!-- Müzik -->
+        <div class="audioBox">
+          <div class="playerRow">
+            <button class="playBtn" id="playBtn" type="button" aria-label="Müziği başlat/durdur">▶</button>
+            <div class="trackInfo">
+              <p class="trackTitle">Müzik</p>
+              <p class="trackHint" id="trackHint">Başlatmak için butona dokunun</p>
+            </div>
+          </div>
+          <input class="progress" id="progress" type="range" min="0" max="100" value="0" />
+          <audio id="music" preload="metadata">
+            <source src="muzik.mp3" type="audio/mpeg"/>
+          </audio>
+        </div>
+
+        <div class="strip">
+          <div class="photos">
+            <img src="p1.jpg" alt="Foto 1">
+            <img src="p2.jpg" alt="Foto 2">
+            <img src="p3.jpg" alt="Foto 3">
+            <img src="p4.jpg" alt="Foto 4">
+          </div>
+        </div>
+
+        <div class="sectionTitle">Düğün</div>
+        <div class="underline"></div>
+        <p class="details">
+          28 Mart 2026<br/>
+          Saat: 19.00<br/>
+          Tac Mahal Düğün Salonu
+        </p>
+
+        <a class="mapBtn" target="_blank" href="https://maps.google.com/?q=">
+          📍 Konuma Git
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ✅ Tarih (gerekirse değiştir)
+    const TARGET = new Date("2026-03-28T19:00:00");
+
+    // --------- Geri sayım ----------
+    const elD = document.getElementById("d");
+    const elH = document.getElementById("h");
+    const elM = document.getElementById("m");
+    const elS = document.getElementById("s");
+
+    function tick(){
+      const now = new Date();
+      let diff = TARGET - now;
+
+      if(diff <= 0){
+        elD.textContent = "0";
+        elH.textContent = "0";
+        elM.textContent = "0";
+        elS.textContent = "0";
+        return;
+      }
+
+      const totalSeconds = Math.floor(diff / 1000);
+      const days = Math.floor(totalSeconds / (3600*24));
+      const hours = Math.floor((totalSeconds % (3600*24)) / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
+
+      elD.textContent = String(days);
+      elH.textContent = String(hours).padStart(2,"0");
+      elM.textContent = String(minutes).padStart(2,"0");
+      elS.textContent = String(seconds).padStart(2,"0");
+    }
+    tick();
+    setInterval(tick, 1000);
+
+    // --------- Müzik Play/Pause ----------
+    const music = document.getElementById("music");
+    const playBtn = document.getElementById("playBtn");
+    const progress = document.getElementById("progress");
+    const trackHint = document.getElementById("trackHint");
+
+    let playing = false;
+
+    async function startMusic(){
+      await music.play();
+      playing = true;
+      playBtn.textContent = "⏸";
+      if(trackHint) trackHint.textContent = "Durdurmak için butona dokunun";
+    }
+
+    function stopMusic(){
+      music.pause();
+      playing = false;
+      playBtn.textContent = "▶";
+      if(trackHint) trackHint.textContent = "Başlatmak için butona dokunun";
+    }
+
+    playBtn.addEventListener("click", async () => {
+      try{
+        if(!playing) await startMusic();
+        else stopMusic();
+      }catch(e){
+        alert("Müzik başlatılamadı. 'muzik.mp3' aynı klasörde ve adı doğru mu?");
+      }
+    });
+
+    music.addEventListener("timeupdate", () => {
+      if(!music.duration) return;
+      const pct = (music.currentTime / music.duration) * 100;
+      progress.value = String(Math.floor(pct));
+    });
+
+    progress.addEventListener("input", () => {
+      if(!music.duration) return;
+      const t = (Number(progress.value) / 100) * music.duration;
+      music.currentTime = t;
+    });
+
+    // --------- ✅ Kapak tıklanınca: müziği başlat + kapağı kapat ----------
+    const overlay = document.getElementById("overlay");
+    const openBtn = document.getElementById("openBtn");
+
+    async function openInvite(){
+      try{
+        // kullanıcı etkileşimi içinde olduğu için mobilde çalışır
+        await startMusic();
+      }catch(e){
+        // müzik başlamasa bile davetiye açılsın
+      }
+      overlay.classList.add("fadeOut");
+      setTimeout(()=> overlay.remove(), 350);
+    }
+
+    openBtn.addEventListener("click", openInvite);
+
+    // Ek: kullanıcı kartın herhangi bir yerine dokunursa da açılsın
+    overlay.addEventListener("click", (e)=>{
+      if(e.target === overlay) openInvite();
+    });
+  </script>
+
+</body>
+</html>
