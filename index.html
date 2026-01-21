@@ -383,11 +383,24 @@ radial-gradient(800px 300px at 50% 10%, rgba(0, 0, 0, .06), transparent 55%), li
   <div class="page">
     <div class="film">
 
-      <div class="content">
-<div style="width:100%; position:absolute; left:0; right:0; opacity:0.4; top:-46px; bottom:0; pointer-events:none;">
-  <img style="width: 90%;" src="bg.png" alt="Foto 1">
+      <div class="content" style="overflow: hidden;">
+<div class="f1" style="
+position: absolute;
+left: -325px;
+opacity: 0.4;
+top: -74px;
+transform: rotate(135deg);
+pointer-events: none;">
+  <img style="width: 64%;" src="bg.png" alt="Foto 1">
 </div>
-
+<div class="f2" style="position: absolute;
+right: -325px;
+opacity: 0.4;
+top: -74px;
+transform: rotate(-135deg) scaleX(-1);
+pointer-events: none;">
+  <img style="width: 64%;" src="bg.png" alt="Foto 1">
+</div>
      
         <div class="names">Eda Nur <br/>&<br/> Abdulkadir </div>
 
