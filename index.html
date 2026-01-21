@@ -88,6 +88,7 @@
     }
     .fadeOut{
       animation: fadeOut .35s ease forwards;
+       pointer-events: none; 
     }
     @keyframes fadeOut{
       to{ opacity: 0; transform: scale(1.02); pointer-events:none; }
@@ -382,13 +383,10 @@ radial-gradient(800px 300px at 50% 10%, rgba(0, 0, 0, .06), transparent 55%), li
     <div class="film">
 
       <div class="content">
-<div style="width: 100%;
-    position: absolute;
-    left: 0;
-    right: 0;
-    opacity: 0.4;
-    top: 0;
-    bottom: 0;"><img style="width: 90%;" src="bg.png" alt="Foto 1">   </div>
+<div style="width:100%; position:absolute; left:0; right:0; opacity:0.4; top:0; bottom:0; pointer-events:none;">
+  <img style="width: 90%;" src="bg.png" alt="Foto 1">
+</div>
+
      
         <div class="names">Eda Nur <br/>&<br/> Abdulkadir </div>
 
@@ -396,10 +394,21 @@ radial-gradient(800px 300px at 50% 10%, rgba(0, 0, 0, .06), transparent 55%), li
         <!-- ✅ AİLELER (Yeni bölüm) -->
 
           <div class="famGrid">
+                        <!-- Gelin tarafı -->
+            <div class="famCard">
+              <div class="famRole">Gelin Ailesi</div>
+              <p class="famName">Dönüş & Şerif <br/> Arı</p>
+              <p class="famNote">İletişim için aşağıdan yazabilirsiniz</p>
+
+              <a class="waBtn" target="_blank"
+                 href="https://wa.me/905449004213?text=Merhaba%2C%20d%C3%BC%C4%9F%C3%BCn%20ile%20ilgili%20bilgi%20alabilir%20miyim%3F">
+                <span class="waDot"></span> WhatsApp
+              </a>
+            </div>
             <!-- Damat tarafı -->
             <div class="famCard">
               <div class="famRole">Damat Ailesi</div>
-              <p class="famName">Mehmet & Şefika <br/>Üçme</p>
+              <p class="famName">Şefika & Mehmet <br/>Üçme</p>
               <p class="famNote">İletişim için aşağıdan yazabilirsiniz</p>
 
               <!-- İstersen WhatsApp aç: numarayı yaz -->
@@ -410,17 +419,7 @@ radial-gradient(800px 300px at 50% 10%, rgba(0, 0, 0, .06), transparent 55%), li
               </a>
             </div>
 
-            <!-- Gelin tarafı -->
-            <div class="famCard">
-              <div class="famRole">Gelin Ailesi</div>
-              <p class="famName">Şerif & Dönüş <br/> Arı</p>
-              <p class="famNote">İletişim için aşağıdan yazabilirsiniz</p>
 
-              <a class="waBtn" target="_blank"
-                 href="https://wa.me/905449004213?text=Merhaba%2C%20d%C3%BC%C4%9F%C3%BCn%20ile%20ilgili%20bilgi%20alabilir%20miyim%3F">
-                <span class="waDot"></span> WhatsApp
-              </a>
-            </div>
           </div>
 
         <!-- Müzik -->
