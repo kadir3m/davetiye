@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Abdulkadir Üçme & Eda Nur Arı</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Great+Vibes&display=swap" rel="stylesheet">
 
   <style>
     :root{
@@ -47,13 +50,14 @@
       box-shadow: 0 20px 60px rgba(0,0,0,.45);
     }
     .overlayStar{ font-size: 34px; margin-bottom: 10px; }
-    .overlayTitle{
-      font-family: "Brush Script MT","Segoe Script","Snell Roundhand","Apple Chancery",cursive;
-      font-size: 44px;
-      line-height: 1.05;
-      margin: 0 0 10px;
-      font-weight: 500;
-    }
+.overlayTitle{
+  font-family: "Allura", "Great Vibes", "Brush Script MT","Segoe Script","Snell Roundhand","Apple Chancery",cursive;
+  font-size: 52px;
+  line-height: 1.05;
+  margin: 0 0 10px;
+  font-weight: 400;
+  letter-spacing: .5px;
+}
     .overlaySub{
       margin: 0 0 16px;
       color: rgba(255,255,255,.78);
@@ -94,25 +98,11 @@
       margin: 18px auto 30px;
       padding: 0 14px;
     }
+@media (max-width: 420px){
+  .names{ font-size: 48px; }
+  .overlayTitle{ font-size: 46px; }
+}
 
-    .film{
-      position: relative;
-      background: var(--paper);
-      border-radius: 10px;
-      overflow: hidden;
-      border: 1px solid #e1e1e1;
-      box-shadow: 0 18px 45px rgba(0,0,0,.12);
-    }
-
-    .film::before,
-    .film::after{
-      content:"";
-      position:absolute;
-      top:0; bottom:0;
-      width: 34px;
-      background: #111;
-      opacity: .95;
-    }
     .film::before{ left:0; }
     .film::after{ right:0; }
 
@@ -138,10 +128,8 @@
 
     .content{
       padding: 26px 18px 24px;
-      margin: 0 34px;
       background:
-        radial-gradient(800px 300px at 50% 10%, rgba(0,0,0,.06), transparent 55%),
-        linear-gradient(#f6f6f6,#f1f1f1);
+radial-gradient(800px 300px at 50% 10%, rgba(0, 0, 0, .06), transparent 55%), linear-gradient(#b9d0ff, #ffd1d1ba);
       text-align:center;
     }
 
@@ -158,12 +146,14 @@
       font-size: 18px;
     }
 
-    .names{
-      font-size: 52px;
-      margin: 6px 0 10px;
-      font-family: "Brush Script MT", "Segoe Script", "Snell Roundhand", "Apple Chancery", cursive;
-      font-weight: 500;
-    }
+.names{
+  font-family: "Allura", "Great Vibes", "Brush Script MT","Segoe Script","Snell Roundhand","Apple Chancery",cursive;
+  font-size: 56px;
+  margin: 10px 0 12px;
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: .4px;
+}
 
     /* Geri sayım */
     .countdown{
@@ -378,35 +368,24 @@
   <div class="overlay" id="overlay">
     <div class="overlayCard">
       <div class="overlayStar">✦</div>
-      <h1 class="overlayTitle">Abdulkadir Üçme<br/>ve Eda Nur Arı</h1>
+      <h1 class="overlayTitle">Abdulkadir <br/>&<br/> Eda Nur </h1>
       <p class="overlaySub">
         Davetiyeyi açmak için dokunun.<br/>
         Müzik birlikte başlayacaktır.
       </p>
       <button class="openBtn" id="openBtn" type="button">🎵 Davetiyeyi Aç</button>
-      <div class="tiny">Not: Tarayıcı kuralları gereği müzik kullanıcı dokunuşu ile başlar.</div>
+      <!-- <div class="tiny">Not: Tarayıcı kuralları gereği müzik kullanıcı dokunuşu ile başlar.</div> -->
     </div>
   </div>
 
   <div class="page">
     <div class="film">
 
-      <div class="holes left">
-        <div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div>
-        <div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div>
-        <div class="hole"></div><div class="hole"></div>
-      </div>
-      <div class="holes right">
-        <div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div>
-        <div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div><div class="hole"></div>
-        <div class="hole"></div><div class="hole"></div>
-      </div>
-
       <div class="content">
         <div class="star">✦</div>
         <p class="tagline">Sonsuzluğa Birlikte Adım</p>
 
-        <div class="names">Abdulkadir Üçme<br/>ve Eda Nur Arı</div>
+        <div class="names">Abdulkadir <br/>&<br/> Eda Nur </div>
 
 
         <!-- ✅ AİLELER (Yeni bölüm) -->
@@ -414,8 +393,8 @@
           <div class="famGrid">
             <!-- Damat tarafı -->
             <div class="famCard">
-              <div class="famRole">Damat Tarafı</div>
-              <p class="famName">Mehmet & Şefika Üçme</p>
+              <div class="famRole">Damat Ailesi</div>
+              <p class="famName">Mehmet & Şefika <br/>Üçme</p>
               <p class="famNote">İletişim için aşağıdan yazabilirsiniz</p>
 
               <!-- İstersen WhatsApp aç: numarayı yaz -->
@@ -428,8 +407,8 @@
 
             <!-- Gelin tarafı -->
             <div class="famCard">
-              <div class="famRole">Gelin Tarafı</div>
-              <p class="famName">Şerif & Dönüş Arı</p>
+              <div class="famRole">Gelin Ailesi</div>
+              <p class="famName">Şerif & Dönüş <br/> Arı</p>
               <p class="famNote">İletişim için aşağıdan yazabilirsiniz</p>
 
               <a class="waBtn" target="_blank"
